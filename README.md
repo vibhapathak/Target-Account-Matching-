@@ -100,7 +100,10 @@ Updates the target status of a company.
 git clone https://github.com/your-username/target-account-matching-api.git
 cd target-account-matching-api
 npm install
-npm start
+cd server
+run: node server.js
+Open another Terminal
+run: npm run dev
 ```
 
 API will run on `http://localhost:3000/` by default.
@@ -116,16 +119,6 @@ API will run on `http://localhost:3000/` by default.
 ]
 ```
 
----
-
-## ✅ Future Improvements
-
-- Connect to MongoDB for persistent data
-- Role-based access for admins vs users
-- Better password encryption using `bcrypt`
-- Pagination for `/accounts`
-
----
 
 ## 📄 License
 

@@ -1,13 +1,132 @@
-## DeFi Road Map
+# 🚀 Target Account Matching API  
+*A RESTful API for account-based targeting with match scores and status updates.*
 
-We are building an innovative DeFi platform similar to [Yam on RealT](https://staging-yam.realtoken.network), aiming to make decentralized finance accessible and efficient.
-Our project is in advanced stages, with initial smart contracts and an frontend UI already implemented.
-The role will focus on finalizing and enhancing our platform’s user interface, integrating wallet functionality, and developing a marketplace for token transactions.
+## 📌 Overview
 
-## Environment
+This project was made with the goal to build a REST API service that supports:
 
-If you meet any error while running the project, check the options bellow. And if you are using Windows, it is recommended to run the project using powershell or cmd.
+- 🔐 User login and token generation  
+- 📊 Fetching company match scores  
+- ✏️ Updating target statuses for accounts
 
-Node verion: v18 or later
+---
 
-OS: Mac, Linux, Windows(An unexpected issue may arise)
+## ⚙️ Features
+
+- **User Authentication** via `/login`
+- **Company Match Scores API** via `/accounts`
+- **Target Status Update** for specific accounts via `/accounts/:id/status`
+- JSON-based responses for seamless frontend integration
+
+---
+
+## 🛠️ Tech Stack
+
+- **Node.js**
+- **Express.js**
+- **JWT** for authentication
+- **Body-parser** for JSON parsing (if needed)
+- **In-memory/static JSON data** (can be swapped with DB later)
+
+---
+
+## 🔐 API Endpoints
+
+### 1. `POST /login`
+Logs in a user and returns a token.
+
+#### Request:
+```json
+{
+  "username": "user1",
+  "password": "pass123"
+}
+```
+
+#### Response:
+```json
+{
+  "message": "Login successful",
+  "token": "xyz"
+}
+```
+
+---
+
+### 2. `GET /accounts`
+Returns a list of companies along with their match scores.
+
+#### Response:
+```json
+[
+  {
+    "id": 1,
+    "companyName": "TechCorp",
+    "matchScore": 86,
+    "accountStatus": "Target"
+  },
+  ...
+]
+```
+
+> 🛡️ Requires Bearer Token Authorization.
+
+---
+
+### 3. `POST /accounts/:id/status`
+Updates the target status of a company.
+
+#### Request:
+```json
+{
+  "status": "Target"
+}
+```
+
+#### Response:
+```json
+{
+  "message": "Status updated successfully"
+}
+```
+
+> 🛡️ Requires Bearer Token Authorization.
+
+---
+
+## ▶️ How to Run Locally
+
+```bash
+git clone https://github.com/your-username/target-account-matching-api.git
+cd target-account-matching-api
+npm install
+npm start
+```
+
+API will run on `http://localhost:3000/` by default.
+
+---
+
+## 🧪 Sample Users
+
+```json
+[
+  { "username": "user1", "password": "pass123" },
+  { "username": "admin", "password": "adminpass" }
+]
+```
+
+---
+
+## ✅ Future Improvements
+
+- Connect to MongoDB for persistent data
+- Role-based access for admins vs users
+- Better password encryption using `bcrypt`
+- Pagination for `/accounts`
+
+---
+
+## 📄 License
+
+This project is licensed under the [MIT License](LICENSE).
